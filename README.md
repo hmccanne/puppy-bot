@@ -1,5 +1,4 @@
-# easy-peasy-bot
-
+# puppy-bot
 ## The story of a (Slack)bot
 
 A (not so) long time ago, a team called Tiny Speck built an app to communicate with each other as they worked.
