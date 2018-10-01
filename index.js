@@ -82,12 +82,24 @@ controller.on('rtm_close', function (bot) {
 // BEGIN EDITING HERE!
 
 controller.on('bot_channel_join', function (bot, message) {
-    bot.reply(message, "I'm here!")
+    bot.reply(message, "Prepare for Puppies!")
 });
 
 controller.hears('hello', 'direct_message', function (bot, message) {
     bot.reply(message, 'Hello!');
 });
+
+controller.hears('^puppy (\\d+)$', 'message,direct_message', function (bot, message) {
+	var errorCode = message.match[1]
+	console.log(`error code: ${errorCode}`);
+    bot.reply(message, `https://httpstatusdogs.com/${errorCode}`);
+});
+
+controller.hears('^puppy$', 'message,direct_message,message_received', function (bot, message) {
+	var puppy = Math.floor(Math.random() * 175) +1;
+    bot.reply(message, `http://emergencypuppy.party/puppy/${puppy}`);
+});
+
 
 
 /**
