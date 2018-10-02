@@ -89,17 +89,21 @@ controller.hears('hello', 'direct_message', function (bot, message) {
     bot.reply(message, 'Hello!');
 });
 
-controller.hears('^puppy (\\d+)$', 'message,direct_message', function (bot, message) {
+controller.hears('^puppy (\\d+)$', 'ambient', function (bot, message) {
 	var errorCode = message.match[1]
 	console.log(`error code: ${errorCode}`);
-    bot.reply(message, `https://httpstatusdogs.com/${errorCode}`);
+    bot.reply(message, `https://httpstatusdogs.com/img/${errorCode}.jpg`);
 });
 
-controller.hears('^puppy$', 'message,direct_message,message_received', function (bot, message) {
+controller.hears('^puppy$', 'ambient', function (bot, message) {
 	var puppy = Math.floor(Math.random() * 175) +1;
     bot.reply(message, `http://emergencypuppy.party/puppy/${puppy}`);
+//	bot.reply(message, 'https://www.randomdoggiegenerator.com/randomdoggie.php');
 });
 
+controller.hears('help', 'direct_mention', function (bot, message) {
+    bot.reply(message, 'Type "puppy" by itself to ge a random puppy. Type puppy <http error code> on its own line to have a puppy look up your error code');
+});
 
 
 /**
